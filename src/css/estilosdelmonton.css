@@ -1,0 +1,172 @@
+:root {
+    --fondo: #f4f5fb;
+    --tarjeta: #ffffff;
+    --texto: #1f2233;
+    --suave: #8a8fa8;
+    --borde: #e3e5f0;
+    --acento: #6c5ce7;
+    --acento-hover: #5847d6;
+    --ok: #1fa971;
+    --peligro: #e5484d;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fondo: #14151f;
+        --tarjeta: #1e2030;
+        --texto: #ecedf5;
+        --suave: #7d829c;
+        --borde: #2c2f45;
+        --acento: #8b7cff;
+        --acento-hover: #a396ff;
+        --ok: #3ccf91;
+        --peligro: #ff6b70;
+    }
+}
+
+
+
+.tareas {
+    max-width: 520px;
+    margin: 48px auto;
+    padding: 0 16px;
+}
+
+.tareas h1 {
+    margin: 0 0 20px;
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+}
+
+/* --- formulario para agregar --- */
+.tareas__nueva {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tareas__nueva input {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 1rem;
+    color: var(--texto);
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tareas__nueva input:focus {
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--acento) 25%, transparent);
+}
+
+.tareas__nueva button {
+    padding: 0 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--acento);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.tareas__nueva button:hover { background: var(--acento-hover); }
+.tareas__nueva button:active { transform: scale(0.97); }
+
+/* --- cada tarea --- */
+.tarea {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+}
+
+.tarea:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+}
+
+.tarea p {
+    flex: 1;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* checkbox personalizado */
+.tarea input[type="checkbox"] {
+    appearance: none;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border: 2px solid var(--suave);
+    border-radius: 7px;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.tarea input[type="checkbox"]::after {
+    content: "";
+    width: 5px;
+    height: 10px;
+    margin-top: -2px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.15s;
+}
+
+.tarea input[type="checkbox"]:checked {
+    background: var(--ok);
+    border-color: var(--ok);
+}
+
+.tarea input[type="checkbox"]:checked::after {
+    transform: rotate(45deg) scale(1);
+}
+
+/* etiqueta "Completada" */
+.tarea b {
+    padding: 3px 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ok);
+    background: color-mix(in srgb, var(--ok) 15%, transparent);
+    border-radius: 999px;
+}
+
+/* tarea hecha */
+.tarea--hecha { opacity: 0.7; }
+.tarea--hecha p {
+    color: var(--suave);
+    text-decoration: line-through;
+}
+
+/* boton borrar */
+.tarea button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    color: var(--peligro);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.tarea button:hover {
+    background: color-mix(in srgb, var(--peligro) 12%, transparent);
+    border-color: var(--peligro);
+}
